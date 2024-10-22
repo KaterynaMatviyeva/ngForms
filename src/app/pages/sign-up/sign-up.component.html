@@ -1,0 +1,90 @@
+<div class="container">
+  <form [formGroup]="form">
+    <div class="row g-3">
+      <div class="col col-6">
+        <input
+          type="text"
+          placeholder="nome *"
+          formControlName="nome"
+          class="form-control"
+        />
+      </div>
+
+      <div class="col col-6">
+        <input
+          type="text"
+          placeholder="cognome *"
+          formControlName="cognome"
+          class="form-control"
+        />
+      </div>
+    </div>
+    <div>
+      <input
+        type="text"
+        placeholder="username"
+        formControlName="username"
+        class="form-control my-2"
+      />
+    </div>
+    <div formGroupName="authData">
+      <div class="row my-2">
+        <div class="col col-6">
+          <input
+            type="password"
+            placeholder="password *"
+            formControlName="password"
+            class="form-control"
+          />
+        </div>
+        <div class="col col-6">
+          <input
+            type="password"
+            placeholder="conferma password *"
+            formControlName="confermaPassword"
+            class="form-control"
+          />
+        </div>
+        <span>{{ getMessage("authData.confermaPassword") }}</span>
+      </div>
+    </div>
+    <div class="row g-3">
+      <div class="form-check col col-6">
+        <div *ngFor="let genere of generi">
+          <label class="form-check-label" [for]="genere">{{ genere }}</label>
+
+          <input
+            type="radio"
+            [id]="genere"
+            [value]="genere"
+            formControlName="genere"
+            class="form-check-input"
+          />
+        </div>
+      </div>
+      <div class="col col-6">
+        <label class="form-label" for="image"
+          >Scegli immagine del tuo profilo:</label
+        >
+
+        <input
+          type="file"
+          id="image"
+          formControlName="image"
+          accept="image/png, image/jpeg"
+        />
+      </div>
+      <div>
+        <label class="form-label" for="biografia"
+          >Scrivi qui la tua biografia</label
+        >
+        <input type="textarea" formControlName="biografia" />
+      </div>
+    </div>
+
+    <button [disabled]="form.invalid" class="btn btn-outline-success">
+      Iscriviti
+    </button>
+  </form>
+  <p>* campo obbligatorio</p>
+</div>
